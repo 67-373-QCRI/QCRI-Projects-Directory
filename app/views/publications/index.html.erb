@@ -23,9 +23,9 @@
       <% @publications.each do |publication| %>
 
          <tr>
-            <td><%= publication.name %></td>
+            <td><%= publication.title %></td>
             <td><%= link_to "Download document", publication.attachment_url %></td>
-            <td><%= button_to "Delete",  publication, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{publication.name}?" %></td>
+            <td><%= button_to "Delete",  publication, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{publication.title}?" %></td>
          </tr>
 
       <% end %>
