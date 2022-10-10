@@ -1,17 +1,21 @@
-<%= form_with(model: publication) do |form| %>
-  <% if publication.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+<% if !@publication.errors.empty? %>
+   <div class = "alert alert-error">
 
       <ul>
-        <% publication.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+         <% @publication.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
       </ul>
-    </div>
-  <% end %>
 
-  <div>
-    <%= form.submit %>
-  </div>
+   </div>
 <% end %>
+
+<div class = "well">
+   <%= form_for @publication, html: { multipart: true } do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>

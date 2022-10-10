@@ -23,15 +23,11 @@ class PublicationsController < ApplicationController
   def create
     @publication = Publication.new(publication_params)
 
-    respond_to do |format|
       if @publication.save
-        format.html { redirect_to publication_url(@publication), notice: "Publication was successfully created." }
-        format.json { render :show, status: :created, location: @publication }
+         redirect_to publications_url, notice: "The document #{@publication.title} has been uploaded."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @publication.errors, status: :unprocessable_entity }
+         render "new"
       end
-    end
   end
 
   # PATCH/PUT /publications/1 or /publications/1.json
@@ -65,6 +61,6 @@ class PublicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def publication_params
-      params.fetch(:publication, {})
+      params.require(:publication).permit(:title, :authors)
     end
 end
