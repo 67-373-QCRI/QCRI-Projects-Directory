@@ -23,35 +23,49 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_222614) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer "publication_id", null: false
-    t.integer "product_id", null: false
-    t.string "team_leader", null: false
+    t.bigint "team_leader_id", null: false
     t.text "members", default: [], array: true
+    t.text "description"
+    t.date "start_date", default: "2022-10-11"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["team_leader_id"], name: "index_projects_on_team_leader_id"
   end
 
   create_table "publications", force: :cascade do |t|
+    t.bigint "project_id"
     t.string "title", null: false
     t.text "authors", default: [], array: true
+    t.date "published_on"
+    t.boolean "published", null: false
+    t.string "doi", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "attachment"
+    t.index ["project_id"], name: "index_publications_on_project_id"
   end
 
   create_table "researchers", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.string "group"
+    t.string "job_title"
+    t.text "bio"
     t.boolean "is_leader", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_researchers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "username", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "projects", "researchers", column: "team_leader_id"
+  add_foreign_key "publications", "projects"
+  add_foreign_key "researchers", "users"
 end
