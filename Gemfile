@@ -28,8 +28,7 @@ gem "stimulus-rails"
 gem "simple_form"
 
 # A modern responsive front-end framework based on Material Design. [https://github.com/mkhairi/materialize-sass]
-gem 'materialize-sass', '~> 1.0.0'
-gem 'materialize-form'
+# gem 'materialize-sass', '~> 1.0.0'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator [https://github.com/kaminari/kaminari]
 gem 'kaminari'
@@ -49,7 +48,9 @@ gem 'kaminari'
 # Use CarrierWave to upload files
 gem 'carrierwave', '~> 2.0'
 
-# gem 'bootstrap', '~> 5.2.1'
+gem 'bootstrap', '~> 5.2.1'
+gem 'jquery-rails'
+# gem 'bootstrap-material-design'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"
@@ -58,7 +59,7 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

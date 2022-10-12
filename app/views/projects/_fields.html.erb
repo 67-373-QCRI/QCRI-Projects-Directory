@@ -1,6 +1,6 @@
 <%= f.input :name, label_html: { class: 'active' } %>
 <%= f.input :description, label_html: { class: 'active' } %>
-<%= f.input :members, as: :collection_select, collection: Researcher.all.to_a, include_blank: true, input_html: {multiple: true} %>
-<%= f.association :team_leader, as: :collection_select, collection: Researcher.team_leaders.to_a, include_blank: false %>
-<%= f.input :start_date, as: :date %>
-<%= f.input :end_date, as: :date, include_blank: true %>
+<%= f.input :members, collection: Researcher.all.to_a, include_blank: true, input_html: {multiple: true}, label_html: { class: 'active' } %>
+<%= f.association :team_leader, collection: Researcher.team_leaders.to_a, prompt: "Choose the team leader", value_method: :id, include_blank: false, label_html: { class: 'active' } %>
+<%= f.input :start_date, label_html: { class: 'active' } %>
+<%= f.input :end_date, include_blank: true, label_html: { class: 'active' } %>

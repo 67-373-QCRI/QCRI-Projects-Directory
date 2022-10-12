@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   # Relationships
   has_many :publications
-  belongs_to :team_leader, class_name: "Researcher"
+  belongs_to :team_leader, class_name: "Researcher", optional: true # OPTIONAL ONLY FOR DEV PURPOSES
 
   # Validations
   validates :team_leader, presence: true
