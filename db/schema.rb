@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_222614) do
 
   create_table "projects", force: :cascade do |t|
     t.bigint "team_leader_id", null: false
+    t.string "name"
     t.text "members", default: [], array: true
     t.text "description"
     t.date "start_date", default: "2022-10-11"
