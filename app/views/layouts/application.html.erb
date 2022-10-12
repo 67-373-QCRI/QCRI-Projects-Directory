@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>QCRI</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%# javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Bitter|Josefin+Sans|Nunito|Varela+Round" %>
+  </head>
 
-   <head>
-      <title>QCRI</title>
-      <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-      <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-      <%= csrf_meta_tags %>
-   </head>
+  <body>
+    <!-- TO DO: Implement different views for admin and guest -->
+    <!-- Partials for the topbar and navigation -->
+    <%= render :partial => "partials/topbar" %>
+    <%= render :partial => "partials/nav" %>
 
-   <body>
-      <div class = "container" style = "padding-top:20px;">
-         <%= yield %>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <!-- Flash messages appear here -->
+          <%= render :partial => "partials/flash" %>
+
+          <!-- CALL THE TEMPLATE ASSOCIATED WITH THE ACTION THE CONTROLLERS ASKED TO RENDER
+          THE MAIN CONTENT OF TEMPLATE GOES HERE (WHERE THE YIELD IS MENTIONED)-->
+          <%= yield %>
+
+
+        </div>
       </div>
-   </body>
+    </div>
 
+    <%= render :partial => "partials/footer" %>
+    <%= javascript_include_tag 'application' %>
+  </body>
 </html>

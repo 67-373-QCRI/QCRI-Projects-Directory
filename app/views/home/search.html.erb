@@ -1,0 +1,12 @@
+<h5>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@total_hits, 'hit') %></h5>
+<p class="supertiny">&nbsp;</p>
+
+<% unless @projects.empty? %>
+  <p><em><strong>Projects matching term '<%= @query %>'</strong></em></p>
+  <ul>
+    <% for project in @projects do %>
+      <li><%= link_to project.name, project_path(project) %></li>
+    <% end %>
+  </ul>
+  <p class="smtext">&nbsp;</p>
+<% end %>

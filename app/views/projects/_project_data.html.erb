@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-content">
+    <h5>Project Information for <%= @project.name %></h5><br />
+
+    <b>Team Leader:&nbsp;&nbsp;</b>
+      <%= link_to @project.leader_name, researcher_path(@project.team_leader) %><br /><br />
+
+    <b>Description:&nbsp;&nbsp;</b>
+      <%= @project.description %><br /><br />
+
+    <b>Members:&nbsp;&nbsp;</b>
+      <% @project.members.each do |m| %>
+        <td><%= m %></td>
+      <% end %>
+
+    <b>Start Date:&nbsp;&nbsp;</b>
+      <%= @project.start_date %><br /><br />
+
+    <b>Status&nbsp;&nbsp;</b>
+      <%= @project.status %><br><br><br>
+  </div>
+</div>

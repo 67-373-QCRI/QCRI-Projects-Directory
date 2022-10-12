@@ -1,14 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Projects</h1>
-
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New project", new_project_path %>
+<%= render partial: "partials/structure", locals: {model_name: "project",
+                                                         primary: "projects_list", 
+                                                         secondary: nil,
+                                                         sidebar: nil} %>
