@@ -13,6 +13,7 @@ class Project < ApplicationRecord
   validates :end_date, comparison: { greater_than: :start_date }, allow_nil: true
 
   # Scopes
+  scope :planned, -> { where("start_date > ?", Date.current) }
   scope :ongoing, -> { where(end_date: nil) }
   scope :complete, -> { where.not(end_date: nil) }
   scope :led_by, -> (team_leader_id) { where(team_leader_id: team_leader_id) }

@@ -5,8 +5,8 @@ class CreatePublications < ActiveRecord::Migration[7.0]
       t.string "title", null: false
       t.text "authors", array: true, default: []
       t.date "published_on"
-      t.boolean "published", null: false
-      t.string "doi", null: false
+      t.boolean "published", default: false
+      t.string "doi"
       t.timestamps
     end
   end
