@@ -49,8 +49,12 @@ gem 'kaminari'
 gem 'carrierwave', '~> 2.0'
 
 gem 'bootstrap', '~> 5.2.1'
+
+gem "bootstrap-table-rails"
+
+gem "breadcrumbs"
+
 gem 'jquery-rails'
-# gem 'bootstrap-material-design'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"

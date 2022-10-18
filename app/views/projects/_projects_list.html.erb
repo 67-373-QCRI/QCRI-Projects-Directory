@@ -1,6 +1,9 @@
 <h4>Projects at QCRI</h4>
 
-<table class="striped highlight">
+<table class="striped highlight"
+       data-toggle="table"
+       data-search="true"
+       data-paginate="true">
   <thead>
     <th>Name</th>
     <th class="align_center">Team Leader</th>
@@ -27,6 +30,5 @@
   <% end %>
 </table>
 <br />
-<%= paginate @projects %>
 <p>&nbsp;</p>
 <%= render :partial => "partials/add_new_object", locals: {model_name: 'project'} %>

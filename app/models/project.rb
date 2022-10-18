@@ -25,6 +25,9 @@ class Project < ApplicationRecord
   end
 
   def status
+    if self.start_date > Date.current
+      return "Planned"
+    end
     self.end_date.nil? ? "Ongoing" : "Complete"
   end
 

@@ -77,6 +77,11 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap-table-rails (1.20.2)
+    breadcrumbs (0.3.0)
+      actionview
+      activesupport
+      i18n
     builder (3.2.4)
     capybara (3.37.1)
       addressable
@@ -259,6 +264,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2.1)
+  bootstrap-table-rails
+  breadcrumbs
   capybara
   carrierwave (~> 2.0)
   debug
