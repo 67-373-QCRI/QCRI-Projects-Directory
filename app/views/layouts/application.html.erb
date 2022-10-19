@@ -5,14 +5,11 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%# javascript_include_tag 'application' %>
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Bitter|Josefin+Sans|Nunito|Varela+Round" %>
   </head>
 
   <body>
     <!-- TO DO: Implement different views for admin and guest -->
     <!-- Partials for the topbar and navigation -->
-    <%= render :partial => "partials/topbar" %>
     <%= render :partial => "partials/nav" %>
 
     <div class="container">
