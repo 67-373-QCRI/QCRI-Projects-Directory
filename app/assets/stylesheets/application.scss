@@ -15,6 +15,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+.d-flex[style*="display:none"], .d-flex[style*="display: none"] {
+    display:none !important;
+}
+
 
 // App sections
 @import "application/breadcrumb";

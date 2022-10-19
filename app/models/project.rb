@@ -5,6 +5,7 @@ class Project < ApplicationRecord
 
   # Relationships
   has_many :publications
+  accepts_nested_attributes_for :publications, :reject_if => :all_blank, :allow_destroy => true
   belongs_to :team_leader, class_name: "Researcher", optional: true # OPTIONAL ONLY FOR DEV PURPOSES
 
   # Validations

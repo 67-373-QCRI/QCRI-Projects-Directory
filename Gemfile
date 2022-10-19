@@ -27,6 +27,8 @@ gem "stimulus-rails"
 # Use simple form [https://github.com/heartcombo/simple_form]
 gem "simple_form"
 
+gem "cocoon"
+
 # A modern responsive front-end framework based on Material Design. [https://github.com/mkhairi/materialize-sass]
 # gem 'materialize-sass', '~> 1.0.0'
 

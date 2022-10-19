@@ -1,0 +1,13 @@
+<div class='nested-fields'>
+  <%= f.input :title %>
+  <div id="authors"
+    <%= f.input :authors, as: :array %>
+    <%= link_to_add_authors "Add Author" %>
+  </div>
+  <%= f.input :published_on %>
+  <%= f.input :published %>
+  <%= f.input :doi %>
+  <%= f.input :document, label: "Upload file:", input_html: { direct_upload: true } %>
+  <!-- Currently the remove association link is non-functional -->
+  <%= link_to_remove_association "Remove Publication", f, data: { confirm: "Are you sure?" } %>
+</div>

@@ -8,4 +8,8 @@ module ApplicationHelper
     params[:controller] == controller ? "aria-current=\"page\"" : nil
   end
 
+  def link_to_add_authors(name)
+    link_to name, '#', class: "add_author_fields", :"data-field" => "<input class='text optional' type='text'  name='publication[authors][]' id='publication_'>"
+  end
+
 end
