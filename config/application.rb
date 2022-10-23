@@ -13,6 +13,8 @@ module QCRI
 
     config.eager_load_paths += %W[#{config.root}/lib]
 
+    config.filter_parameters << :password
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

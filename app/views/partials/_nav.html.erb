@@ -4,10 +4,7 @@
       <img src="<%= asset_path('logos/qcri-logo.jpg')%>" alt="Logo" width="60" height="60" class="d-inline-block align-text-center">
       Qatar Computing Research Institute Catalog
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="<%= nav_is_active('projects') %>" aria-current="<%= indicate_current('projects') %>" href="<%= projects_path %>">Projects</a>
@@ -18,6 +15,16 @@
         <li class="nav-item">
           <a class="<%= nav_is_active('products') %>" aria-current="<%= indicate_current('products') %>" href="<%= products_path %>">Products</a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav mr-auto">
+        <% if logged_in? %>
+          <a class="nav-link" href="<%= logout_path %>">Logout</a>
+        <% else %>
+          <div class="btn-group">
+            <a class="btn btn-outline-primary navbar-btn" href="<%= login_path %>">Log In</a>
+            <a class="btn btn-outline-success navbar-btn" href="<%= signup_path %>">Sign Up</a>
+          </div>
+        <% end %>
       </ul>
     </div>
   </div>

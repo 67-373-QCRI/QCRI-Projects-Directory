@@ -1,4 +1,6 @@
 class Researcher < ApplicationRecord
+  # Relationships
+  belongs_to :user
   has_many :projects
 
   # Scopes

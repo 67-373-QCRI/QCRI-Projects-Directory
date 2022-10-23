@@ -1,9 +1,6 @@
 <div class='nested-fields'>
   <%= f.input :title %>
-  <div id="authors">
-    <%= f.input :authors, as: :array %>
-    <%= link_to_add_authors "Add Author +" %>
-  </div>
+  <!-- Removed authors field -->
   <%= f.input :published_on %>
   <%= f.input :published %>
   <%= f.input :doi %>

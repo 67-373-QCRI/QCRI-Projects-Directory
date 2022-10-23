@@ -4,8 +4,15 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index', as: :home
 
 
+  # Authentication Routes
+  get "signup", to: "users#new"
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  get "logout", to: "sessions#destroy"
+
   # Resources
-  resources :users
+  resources :users, except: [:new, :edit]
+
   resources :publications
   resources :researchers
   resources :products

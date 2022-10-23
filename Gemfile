@@ -45,7 +45,7 @@ gem 'kaminari'
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Use CarrierWave to upload files
 gem 'carrierwave', '~> 2.0'

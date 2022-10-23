@@ -1,12 +1,26 @@
 <h3> New Project </h3>
 
 <%= simple_form_for @project do |f| %>
+  <% if @project.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h2>Please resolve the following <%= "error".pluralize(@project.errors.count) %>:</h2>
+
+      <ul>
+        <% @project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.input :name, label_html: { class: 'active' } %>
   <%= f.input :description, label_html: { class: 'active' } %>
   <%= f.input :members, collection: Researcher.all.to_a, include_blank: true, input_html: {multiple: true}, label_html: { class: 'active' } %>
   <%= f.association :team_leader, collection: Researcher.team_leaders.to_a, prompt: "Choose the team leader", value_method: :id, include_blank: false, label_html: { class: 'active' } %>
   <%= f.input :start_date, label_html: { class: 'active' } %>
   <%= f.input :end_date, include_blank: true, label_html: { class: 'active' } %>
+  <%= f.label :image, label: "Upload image:" %>
+  <%= f.input :image, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+  <br>
   <h3>Publications</h3>
   <div id='publications'>
     <%= f.simple_fields_for :publications do |publication| %>

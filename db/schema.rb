@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
     t.string "name"
     t.text "members", default: [], array: true
     t.text "description"
-    t.date "start_date", default: "2022-10-11"
+    t.date "start_date", default: "2022-10-23"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,11 +67,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
     t.string "title", null: false
     t.text "authors", default: [], array: true
     t.date "published_on"
-    t.boolean "published", null: false
-    t.string "doi", null: false
+    t.boolean "published", default: false
+    t.string "doi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "attachment"
     t.index ["project_id"], name: "index_publications_on_project_id"
   end
 
@@ -90,6 +89,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
