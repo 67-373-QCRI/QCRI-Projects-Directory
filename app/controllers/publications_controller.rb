@@ -61,6 +61,6 @@ class PublicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def publication_params
-      params.require(:publication).permit(:title, :authors, :attachment)
+      params.require(:publication).permit(:title, authors: [], :document)
     end
 end

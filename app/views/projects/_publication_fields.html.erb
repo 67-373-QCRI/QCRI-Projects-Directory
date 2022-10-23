@@ -1,0 +1,14 @@
+<div class='nested-fields'>
+  <%= f.input :title %>
+  <div id="authors">
+    <%= f.input :authors, as: :array %>
+    <%= link_to_add_authors "Add Author +" %>
+  </div>
+  <%= f.input :published_on %>
+  <%= f.input :published %>
+  <%= f.input :doi %>
+  <%= f.label :document, label: "Upload file:" %>
+  <%= f.input :document, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+  <br>
+  <%= link_to_remove_association "Remove Publication", f, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger", style: "display: inline-block" %>
+</div>

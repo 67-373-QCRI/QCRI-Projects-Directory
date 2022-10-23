@@ -27,6 +27,8 @@ gem "stimulus-rails"
 # Use simple form [https://github.com/heartcombo/simple_form]
 gem "simple_form"
 
+gem "cocoon"
+
 # A modern responsive front-end framework based on Material Design. [https://github.com/mkhairi/materialize-sass]
 # gem 'materialize-sass', '~> 1.0.0'
 
@@ -49,8 +51,12 @@ gem 'kaminari'
 gem 'carrierwave', '~> 2.0'
 
 gem 'bootstrap', '~> 5.2.1'
+
+gem "bootstrap-table-rails"
+
+gem "breadcrumbs"
+
 gem 'jquery-rails'
-# gem 'bootstrap-material-design'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data"

@@ -1,9 +1,9 @@
 class Publication < ApplicationRecord
   # Relationships
-  belongs_to :project, optional: true # Optional only for development
-
-  # Uploader
-  mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
+  belongs_to :project
+  has_one_attached :document
+  # # Uploader
+  # mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
 
   # Validations
   validates :title, presence: true
