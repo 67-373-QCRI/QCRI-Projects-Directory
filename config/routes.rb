@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "logout", to: "sessions#destroy"
 
   # Resources
-  resources :users, except: [:new, :edit]
+  resources :users, except: [:new, :edit, :show]
 
   resources :publications
   resources :researchers

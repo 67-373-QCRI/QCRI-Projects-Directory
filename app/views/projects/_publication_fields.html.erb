@@ -1,11 +1,18 @@
 <div class='nested-fields'>
-  <%= f.input :title %>
-  <!-- Removed authors field -->
-  <%= f.input :published_on %>
-  <%= f.input :published %>
-  <%= f.input :doi %>
-  <%= f.label :document, label: "Upload file:" %>
-  <%= f.input :document, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+  <div class="card">
+    <div class="card-header">
+      Publication
+    </div>
+    <div class="card-body">
+      <%= f.input :title %>
+      <!-- Removed authors field -->
+      <%= f.input :published_on %>
+      <%= f.input :published %>
+      <%= f.input :doi %>
+      <%= f.label :document, label: "Upload file:" %>
+      <%= f.input :document, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+    </div>
+  </div>
   <br>
   <%= link_to_remove_association "Remove Publication", f, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger", style: "display: inline-block" %>
 </div>

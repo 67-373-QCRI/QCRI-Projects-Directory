@@ -1,5 +1,77 @@
-<%= render partial: "partials/structure", locals: {model_name: "project",
-                                                         object: @project,
-                                                         primary: "project_data",
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container primary-content">
+	<!-- PRIMARY CONTENT HEADING -->
+	<div class="primary-content-heading clearfix">
+		<h2><%= @project.name.capitalize %></h2>
+        <hr style="border:1px solid #fff">
+		<!-- end quick task modal -->
+	</div>
+	<!-- END PRIMARY CONTENT HEADING -->
+	<div class="row">
+		<div class="col-md-8">
+			<div class="project-section general-info">
+				<h3>General Info</h3>
+				<p>Rapidiously monetize orthogonal platforms with 24/7 convergence. Uniquely create error-free alignments for customized users. Credibly facilitate just in time benefits rather than user friendly imperatives. Continually promote extensible process improvements whereas virtual. Enthusiastically pontificate proactive infrastructures vis-a-vis value-added products. Enthusiastically coordinate pandemic platforms rather than team building best practices. Globally facilitate plug-and-play materials and interoperable interfaces. Enthusiastically.</p>
+				<div class="row">
+					<div class="col-sm-9">
+						<dl class="dl-horizontal">
+							<dt>Date:</dt>
+							<dd>20-09-2014 - 20-12-2014</dd>
+							<dt>Duration:</dt>
+							<dd>90 days <span class="text-muted"><small>(50 days remaining)</small></span></dd>
+							<dt>Client:</dt>
+							<dd><a href="#">ZenArt</a></dd>
+							<dt>Priority:</dt>
+							<dd><span class="label label-danger">HIGH</span></dd>
+							<dt>Status:</dt>
+							<dd><span class="label label-success">ACTIVE</span></dd>
+							<dt>Team:</dt>
+							<dd>
+								<div class="row">
+                  <%= @project.members
+                  <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<div class="col-sm-3">
+						<div class="status-chart project-progress bottom-30px">
+							<div class="pie-chart" data-percent="60"><span class="percent">60%</span><canvas height="100" width="100"></canvas></div>
+							<span class="chart-title">OVERALL PROGRESS</span>
+              <button type="button" class="btn btn-sm btn-warning "><i class="fa fa-compose"></i> Edit Project</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<!-- RECENT FILES -->
+			<div class="widget">
+				<div class="widget-header clearfix">
+					<h3><i class="fa fa-document"></i> <span>Publications</span></h3>
+					<div class="btn-group widget-header-toolbar">
+						<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="fa fa-ios-arrow-up"></i></a>
+						<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="fa fa-ios-close-empty"></i></a>
+					</div>
+				</div>
+				<div class="widget-content">
+					<ul class="fa-ul recent-file-list bottom-30px">
+						<li><i class="fa-li fa fa-file-pdf-o"></i><a href="#">Project Requirements.pdf</a></li>
+						<li><i class="fa-li fa fa-file-word-o"></i><a href="#">[DRAFT] System Specifications.docx</a></li>
+						<li><i class="fa-li fa fa-file-picture-o"></i><a href="#">Marketing Content-v2.jpg</a></li>
+						<li><i class="fa-li fa fa-file-zip-o"></i><a href="#">All-files-backup.zip</a></li>
+					</ul>
+					<button type="button" class="btn btn-sm btn-primary"><i class="fa fa-upload"></i> Upload</button>
+				</div>
+			</div>
+			<!-- END RECENT FILES -->
+		</div>
+	</div>
+</div>

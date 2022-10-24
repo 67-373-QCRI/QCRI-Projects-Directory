@@ -1,7 +1,7 @@
 class Researcher < ApplicationRecord
   # Relationships
   belongs_to :user
-  has_many :projects
+  has_many :projects, through: :members
 
   # Scopes
   scope :team_leaders, -> { where(is_leader: true) }

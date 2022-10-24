@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "members", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
@@ -53,7 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
   create_table "projects", force: :cascade do |t|
     t.bigint "team_leader_id", null: false
     t.string "name"
-    t.text "members", default: [], array: true
     t.text "description"
     t.date "start_date", default: "2022-10-23"
     t.date "end_date"
@@ -80,6 +84,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_005316) do
     t.string "last_name", null: false
     t.string "group"
     t.string "job_title"
+    t.string "phone_number"
+    t.string "office_location"
+    t.string "github_url"
+    t.string "website_url"
     t.text "bio"
     t.boolean "is_leader", default: false
     t.datetime "created_at", null: false
