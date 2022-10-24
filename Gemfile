@@ -47,9 +47,6 @@ gem 'kaminari'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
-# Use CarrierWave to upload files
-gem 'carrierwave', '~> 2.0'
-
 gem 'bootstrap', '~> 5.2.1'
 
 gem "bootstrap-table-rails"
