@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @project.publications.build
+
   end
 
   # GET /projects/1/edit
@@ -67,6 +68,6 @@ class ProjectsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def project_params
       params.require(:project).permit(:name, :description, :team_leader_id, :start_date, :end_date, :image,
-                                      publications_attributes: [:id, :title, :authors, :published_on, :published, :doi, :document, :_destroy], members: [])
+                                      publications_attributes: [:id, :title, :authors, :published_on, :published, :doi, :document, :_destroy], researcher_ids: [])
     end
 end

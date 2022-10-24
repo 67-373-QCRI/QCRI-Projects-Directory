@@ -56,14 +56,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.bigint "team_leader_id", null: false
+    t.integer "team_leader_id"
     t.string "name"
     t.text "description"
-    t.date "start_date", default: "2022-10-23"
+    t.integer "members", default: [], array: true
+    t.date "start_date", default: "2022-10-24"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_leader_id"], name: "index_projects_on_team_leader_id"
   end
 
   create_table "publications", force: :cascade do |t|
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
 
   create_table "researchers", force: :cascade do |t|
     t.bigint "user_id"
+    t.integer "project_id"
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "group"
@@ -92,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
     t.boolean "is_leader", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_researchers_on_project_id"
     t.index ["user_id"], name: "index_researchers_on_user_id"
   end
 
@@ -106,7 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "projects", "researchers", column: "team_leader_id"
   add_foreign_key "publications", "projects"
+  add_foreign_key "researchers", "projects"
   add_foreign_key "researchers", "users"
 end

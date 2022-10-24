@@ -2,6 +2,7 @@ class CreateResearchers < ActiveRecord::Migration[7.0]
   def change
     create_table :researchers do |t|
       t.references :user, foreign_key: true
+      t.references :project, null: true, foreign_key: true, type: :integer
       t.string "first_name", null: false
       t.string "last_name", null: false
       t.string "group"

@@ -1,10 +1,11 @@
 class Researcher < ApplicationRecord
   # Relationships
   belongs_to :user
-  has_many :projects, through: :members
+  belongs_to :project, optional: true
 
   # Scopes
   scope :team_leaders, -> { where(is_leader: true) }
+  scope :unassigned, -> { where(project_id: nil) }
 
   # Methods
 
