@@ -19,7 +19,11 @@
       <ul class="nav navbar-nav mr-auto">
         <% if logged_in? %>
         <div class="btn-group">
-          <a class="btn btn-outline-info navbar-btn" href="<%= new_researcher_path %>">Create Your Researcher Page</a>
+          <% if current_user.researcher.nil? %>
+            <a class="btn btn-outline-info navbar-btn" href="<%= new_researcher_path %>">Create Your Researcher Page</a>
+          <% else %>
+            <a class="btn btn-outline-info navbar-btn" href="<%= new_researcher_path %>">Edit Your Researcher Page</a>
+          <% end %>
           <a class="btn btn-outline-danger navbar-btn" href="<%= logout_path %>">Logout</a>
         </div>
         <% else %>

@@ -39,14 +39,16 @@
                   <div class="container-fluid py-2">
                     <div class="d-flex flex-row flex-nowrap">
                       <% @project.members.each do |member| %>
-                        <div class="card" style="width: 14rem;">
-                          <img src="<%= rails_blob_path(Researcher.find(member).avatar, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title"><%= Researcher.find(member).full_name %></h5>
-                            <p class="card-text"><%= Researcher.find(member).job_title %></p>
-                            <a href="<%= researcher_path(member) %>" class="btn btn-primary">More Info</a>
+                        <% unless member == @project.team_leader_id %>
+                          <div class="card" style="width: 14rem;">
+                            <img src="<%= rails_blob_path(Researcher.find(member).avatar, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"><%= Researcher.find(member).full_name %></h5>
+                              <p class="card-text"><%= Researcher.find(member).job_title %></p>
+                              <a href="<%= researcher_path(member) %>" class="btn btn-primary">More Info</a>
+                            </div>
                           </div>
-                        </div>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>
@@ -54,11 +56,13 @@
 							</dd>
 						</dl>
 					</div>
-					<div class="col-sm-3">
-						<div class="status-chart project-progress bottom-30px">
-              <button type="button" class="btn btn-sm btn-warning "><i class="fa fa-compose"></i> Edit Project</button>
-						</div>
-					</div>
+          <% if logged_in? && current_user.admin? %>
+  					<div class="col-sm-3">
+  						<div class="status-chart project-progress bottom-30px">
+                <a href="<%= edit_project_path(@project.id) %>" class="btn btn-sm btn-warning "><i class="fa fa-compose"></i> Edit Project</a>
+  						</div>
+  					</div>
+          <% end %>
 				</div>
 			</div>
 		</div>

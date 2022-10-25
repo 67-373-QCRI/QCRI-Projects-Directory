@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one :researcher
 
   # Validations
   has_secure_password

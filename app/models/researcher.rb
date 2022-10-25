@@ -17,6 +17,10 @@ class Researcher < ApplicationRecord
     first_name + ' ' + last_name
   end
 
+  def past_projects
+    Project.where(members: self.id)
+  end
+
   def to_label
     "#{first_name} #{last_name}"
   end
