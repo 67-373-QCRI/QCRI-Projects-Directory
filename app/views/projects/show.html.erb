@@ -2,7 +2,7 @@
 <div class="container primary-content">
 	<!-- PRIMARY CONTENT HEADING -->
 	<div class="primary-content-heading clearfix">
-		<h2><%= @project.name.capitalize %></h2>
+		<h2><%= @project.name %></h2>
         <hr style="border:1px solid #fff">
     <img src="<%= rails_blob_path(@project.image, disposition: "attachment", only_path: true) %>" class="img-thumbnail" alt="...">
 		<!-- end quick task modal -->
@@ -19,7 +19,7 @@
 							<dt>Start Date:</dt>
 							<dd><%= @project.start_date %></dd>
 							<dt>End Date:</dt>
-							<dd><%= @project.end_date.nil? ? "TBA" : project.end_date %></dd>
+							<dd><%= @project.end_date.nil? ? "TBA" : @project.end_date %></dd>
 							<dt>Status:</dt>
 							<dd><%= @project.status %></dd>
 							<dt>Leader:</dt>
@@ -80,7 +80,7 @@
   				<div class="widget-content">
   					<ul class="fa-ul recent-file-list bottom-30px">
               <% @project.publications.each do |publication| %>
-                <li href="<%= rails_blob_path(publication.document, disposition: "attachment") %>">publication.title</li>
+                <li><%= link_to publication.title, rails_blob_path(publication.document, disposition: 'attachment') %></li>
               <% end %>
   					</ul>
   				</div>

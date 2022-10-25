@@ -4,11 +4,10 @@ class Project < ApplicationRecord
   extend AppHelpers::Activeable::ClassMethods
 
   # Callbacks
-  before_create :ensure_leader_is_member
-  after_create :store_member_ids
+  before_create :ensure_leader_is_member, :assign_leader_to_project
+  after_create :store_member_ids, :unassign_members
 
   before_save :set_default_image
-  after_save :unassign_members
 
   # Relationships
   has_many :publications
@@ -36,7 +35,7 @@ class Project < ApplicationRecord
 
   # Methods
   def team_leader
-    self.researchers.find(self.team_leader_id)
+    Researcher.find(self.team_leader_id)
   end
 
   def leader_name
@@ -77,6 +76,12 @@ class Project < ApplicationRecord
     unless self.researcher_ids.include?(self.team_leader_id)
       self.researchers << Researcher.find(self.team_leader_id)
     end
+  end
+
+  def assign_leader_to_project
+    r = Researcher.find(self.team_leader_id)
+    r.update_attribute(:project_id, self.id)
+    r.save!
   end
 
   def unassign_members

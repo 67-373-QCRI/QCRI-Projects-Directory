@@ -73,52 +73,57 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-warning " href="<%= edit_researcher_path(@researcher.id) %>">Edit</a>
+                  <% if logged_in? && ((current_user.researcher.id == @researcher.id) || current_user.admin?) %>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <a class="btn btn-warning " href="<%= edit_researcher_path(@researcher.id) %>">Edit</a>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
               </div>
 
-              <div class="row gutters-sm">
-                <div class="col-sm-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3">Current Project</h6>
-                      <img src="<%= rails_blob_path(@researcher.project.image, disposition: "attachment", only_path: true) %>" width="150", height="150">
-                      <div class="card-title">
-                        <a href="<%= project_path(@researcher.project.id) %>"><h4><%= @researcher.project.name %></h4></a>
+              <div class="row gutters-sm h-25" >
+                <div class="col-sm-6 mb-3 h-100">
+                  <% if @researcher.project_id.nil? %>
+                    <div class="card h-50">
+                      <div class="card-body">
+                        <h5 class="card-title">Current Project</h5>
+                        <p class="card-text"><%= @researcher.first_name.capitalize %> is not currently assigned to a project</p>
                       </div>
                     </div>
-                  </div>
+                  <% else %>
+                    <div class="card h-50">
+                      <div class="card-body">
+                        <h6 class="d-flex align-items-center mb-3">Current Project</h6>
+                        <img src="<%= rails_blob_path(@researcher.project.image, disposition: "attachment", only_path: true) %>" width="150", height="150">
+                        <div class="card-title">
+                          <a href="<%= project_path(@researcher.project.id) %>"><h4><%= @researcher.project.name %></h4></a>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
-                <div class="col-sm-6 mb-3">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="col-sm-6 mb-3 h-100 overflow-auto">
+                  <% if @researcher.past_projects.empty? %>
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Past Projects</h5>
+                        <p class="card-text"><%= @researcher.first_name.capitalize %> does not have any past projects</p>
                       </div>
                     </div>
-                  </div>
+                  <% else %>
+                    <% @researcher.past_projects.each do |project| %>
+                      <div class="card">
+                        <img src="<%= rails_blob_path(project.image, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= project.name %></h5>
+                          <p class="card-text"><%= project.status %></p>
+                          <a href="<%= project_path(project.id) %>" class="btn btn-primary">More Info</a>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
 

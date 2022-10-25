@@ -18,7 +18,11 @@ class Researcher < ApplicationRecord
   end
 
   def past_projects
-    Project.where(members: self.id)
+    if self.project_id.nil?
+      Project.where("? = ANY (members)", self.id)
+    else
+      Project.where.not(id: self.project_id).where("? = ANY (members)", self.id)
+    end
   end
 
   def to_label
