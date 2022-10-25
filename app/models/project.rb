@@ -7,6 +7,7 @@ class Project < ApplicationRecord
   before_create :ensure_leader_is_member
   after_create :store_member_ids
 
+  before_save :set_default_image
   after_save :unassign_members
 
   # Relationships
@@ -87,10 +88,17 @@ class Project < ApplicationRecord
     end
   end
 
+  def set_default_image
+    unless self.image.attached?
+      self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "defaults", "default-project.png")), filename: 'default-project.png' , content_type: "image/png")
+    end
+  end
+
   def store_member_ids
     self.update_attribute(:members, self.researcher_ids)
     self.save!
   end
+
 
 
 
