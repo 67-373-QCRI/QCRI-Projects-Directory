@@ -1,0 +1,15 @@
+<div class="row row-cols-1 row-cols-md-5 g-4">
+  <% for researcher in @researchers %>
+    <div class="col-sm-6">
+      <div class="card">
+        <img src="<%= rails_blob_path(researcher.avatar, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= researcher.full_name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= researcher.job_title %></h6>
+          <p class="card-text-gradient overflow-hidden"><%= researcher.bio %></p>
+          <a href="<%= researcher_path(researcher.id) %>" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

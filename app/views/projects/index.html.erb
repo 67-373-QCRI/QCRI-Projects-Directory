@@ -1,4 +1,15 @@
-<%= render partial: "partials/structure", locals: {model_name: "project",
-                                                         primary: "projects_list", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<div class="container text-left" style="padding-bottom:3rem">
+  <div class="row">
+    <div class="col">
+      <h4>Projects at QCRI</h4>
+    </div>
+    <div class="col">
+      <div class="btn-group" role="group">
+        <a href="<%= projects_path(view: 'table') %>" class="<%= indicate_list_type('table') %>" aria-current="page">Table View</a>
+        <a href="<%= projects_path(view: 'cards') %>" class="<%= indicate_list_type('cards') %>">Card View</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render partial: @partial %>

@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery_ujs
 //= require activestorage
 //= require bootstrap-sprockets
 //= require bootstrap-table/bootstrap-table
@@ -6,3 +7,4 @@
 //= require cocoon
 
 //= require add_author_fields
+//= require render_partial

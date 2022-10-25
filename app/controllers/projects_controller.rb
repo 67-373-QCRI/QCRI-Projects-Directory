@@ -4,6 +4,11 @@ class ProjectsController < ApplicationController
   # GET /projects or /projects.json
   def index
     @projects = Project.all.page(params[:page])
+    @partial = whitelisted_partial || 'table'
+  end
+
+  def whitelisted_partial
+    %w(cards).detect { |str| str == params[:view] }
   end
 
   # GET /projects/1 or /projects/1.json

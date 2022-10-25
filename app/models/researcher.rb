@@ -7,6 +7,8 @@ class Researcher < ApplicationRecord
 
   before_save :set_default_avatar
 
+  before_destroy :remove_researcher_from_projects
+
   # Scopes
   scope :team_leaders, -> { where(is_leader: true) }
   scope :unassigned, -> { where(project_id: nil) }
@@ -14,7 +16,7 @@ class Researcher < ApplicationRecord
   # Methods
 
   def full_name
-    first_name + ' ' + last_name
+    first_name.capitalize + ' ' + last_name.capitalize
   end
 
   def past_projects
@@ -38,4 +40,25 @@ class Researcher < ApplicationRecord
       self.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "defaults", "default-researcher.png")), filename: 'default-researcher.png' , content_type: "image/png")
     end
   end
+
+  def remove_researcher_from_projects
+    all_projects = Project.where('(? = ANY (members)) OR team_leader_id = ?', self.id, self.id)
+    for project in all_projects
+      if project.team_leader_id == self.id
+        unless project.researchers.nil?
+          for researcher in project.researchers
+            researcher.update_attribute(:project_id, nil)
+            researcher.save!
+          end
+        end
+        project.destroy!
+        return
+      end
+      if project.members.include?(self.id)
+        project.members.delete(self.id)
+      end
+      project.save!
+    end
+  end
+
 end

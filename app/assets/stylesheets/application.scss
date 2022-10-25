@@ -1,6 +1,9 @@
 /*
  *= require bootstrap-table/bootstrap-table
  */
+ /*
+*= require material_icons
+*/
 
 // 1. Include functions & variables first
 @import "bootstrap/functions";
@@ -26,6 +29,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "application/footer";
 @import "application/header";
 @import "application/jumbotron";
+@import "application/card-text-gradient";
 
 // Components
 @import "components/alert";
