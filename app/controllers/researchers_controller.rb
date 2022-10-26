@@ -1,5 +1,6 @@
 class ResearchersController < ApplicationController
   before_action :set_researcher, only: %i[ show edit update destroy ]
+  before_action :check_login
 
   # GET /researchers or /researchers.json
   def index
@@ -27,6 +28,9 @@ class ResearchersController < ApplicationController
   # POST /researchers or /researchers.json
   def create
     @researcher = Researcher.new(researcher_params)
+    @user = current_user
+
+    @researcher.user_id = @user.id
 
     respond_to do |format|
       if @researcher.save
@@ -70,6 +74,6 @@ class ResearchersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def researcher_params
-      params.require(:researcher).permit(:first_name, :last_name, :bio, :group, :job_title, :phone_number, :github_url, :website_url, :avatar)
+      params.require(:researcher).permit(:first_name, :last_name, :bio, :group, :job_title, :phone_number, :office_location, :github_url, :website_url, :avatar)
     end
 end

@@ -3,9 +3,12 @@ class Project < ApplicationRecord
   include AppHelpers::Activeable::InstanceMethods
   extend AppHelpers::Activeable::ClassMethods
 
+  attr_accessor :skip_save_callback
+
   # Callbacks
   before_create :ensure_leader_is_member, :assign_leader_to_project
-  after_create :store_member_ids, :unassign_members
+  after_save :store_member_ids, :unassign_members, unless: :skip_save_callback
+
 
   before_save :set_default_image
 
@@ -65,7 +68,9 @@ class Project < ApplicationRecord
   end
 
   def team_leader_exists
-    Researcher.exists?(self.team_leader_id)
+    if (self.team_leader_id.nil?) || (self.team_leader_id_changed?)
+      Researcher.exists?(self.team_leader_id)
+    end
   end
 
   def team_leader_available
@@ -100,8 +105,7 @@ class Project < ApplicationRecord
   end
 
   def store_member_ids
-    self.update_attribute(:members, self.researcher_ids)
-    self.save!
+    self.update_column(:members, self.researcher_ids)
   end
 
 
