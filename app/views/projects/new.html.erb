@@ -2,48 +2,50 @@
   <h3> New Project </h3>
 
 
-    <%= simple_form_for @project do |f| %>
-      <% if @project.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <h2>Please resolve the following <%= "error".pluralize(@project.errors.count) %>:</h2>
+  <%= simple_form_for @project do |f| %>
+    <% if @project.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h2>Please resolve the following <%= "error".pluralize(@project.errors.count) %>:</h2>
 
-          <ul>
-            <% @project.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-  <div class="row">
-      <div class="col">
-        <%= f.input :name, label_html: { class: 'active' } %>
-        <%= f.input :description, input_html: {rows: 7}, label_html: { class: 'active' } %>
-        <%= f.association :researchers, label: "Available Researchers:", collection: Researcher.unassigned.where(is_leader: false), input_html: { multiple: true } %>
-        <%= f.input :team_leader_id, label: "Team Leader:", collection: Researcher.unassigned.where(is_leader: true), prompt: "Choose the team leader", value_method: :id, include_blank: false, label_html: { class: 'active' } %>
-        <%= f.input :start_date, label_html: { class: 'active' } %>
-        <%= f.input :end_date, include_blank: true, label_html: { class: 'active' } %>
-        <%= f.label :image, label: "Upload image:" %>
-        <%= f.input :image, label: false, style: 'display: block', input_html: { direct_upload: true } %>
-      </div>
-      <br>
-      <div class="col">
-        <h3>Publications</h3>
-        <div id='publications'>
-          <%= f.simple_fields_for :publications do |publication| %>
-            <%= render 'publication_fields', :f => publication, i: publication.index %>
+        <ul>
+          <% @project.errors.each do |error| %>
+            <li><%= error.full_message %></li>
           <% end %>
-          <div class='links'>
-            <%= link_to_add_association 'Add Publication', f, :publications, class: "btn btn-outline-primary", style: "display: inline-block" %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <%= f.input :name, label_html: { class: 'active' } %>
+          <%= f.input :description, input_html: {rows: 7}, label_html: { class: 'active' } %>
+          <%= f.association :researchers, label: "Available Researchers:", collection: Researcher.unassigned.where(is_leader: false), input_html: { multiple: true } %>
+          <%= f.input :team_leader_id, label: "Team Leader:", collection: Researcher.unassigned.where(is_leader: true), prompt: "Choose the team leader", value_method: :id, include_blank: false, label_html: { class: 'active' } %>
+          <%= f.input :start_date, label_html: { class: 'active' }, html5: true %>
+          <%= f.input :end_date, include_blank: true, label_html: { class: 'active' }, html5: true %>
+          <%= f.label :image, label: "Upload image:" %>
+          <%= f.input :image, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+        </div>
+        <br>
+        <div class="col">
+          <h3>Publications</h3>
+          <div id='publications'>
+            <%= f.simple_fields_for :publications do |publication| %>
+              <%= render 'publication_fields', :f => publication, i: publication.index %>
+            <% end %>
+            <div class='links' style="padding-top:0.5rem">
+              <%= link_to_add_association 'Add Publication', f, :publications, class: "btn btn-outline-primary", style: "display: inline-block" %>
+            </div>
           </div>
         </div>
       </div>
-      <br>
-      <div class="d-grid gap-2" style="padding-bottom:5rem">
-        <%= f.button :submit, class: "btn btn-outline-success" %>
-        <%= link_to "Cancel", :back, {:class=>"btn btn-outline-danger"} %>
-      </div>
-    <% end %>
-  </div>
+    </div>
+    <br>
+    <div class="d-grid gap-2" style="padding-bottom:5rem">
+      <%= f.button :submit, class: "btn btn-outline-success" %>
+      <%= link_to "Cancel", :back, {class: "btn btn-outline-danger"} %>
+    </div>
+  <% end %>
 <% else %>
   <div class="alert alert-warning" role="alert">
     You must be logged in to perform this action
