@@ -15,10 +15,10 @@
 @r_ahomaid = Researcher.create(user: @u_ahomaid, first_name: "Abdulaziz", last_name: "Al-Homaid", group: "Social Computing", job_title: "Research Associate", phone_number: "5586 9646")
 
 # Researcher attachments
-@r_minhaj.avatar.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\r_aminhaj.jpg'), filename: 'r_aminhaj.jpg', content_type: 'image/jpg')
-@r_srizzo.avatar.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\r_srizzo.png'), filename: 'r_srizzo.png', content_type: 'image/png')
-@r_amusleh.avatar.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\r_amusleh.jpg'), filename: 'r_amusleh.jpg', content_type: 'image/jpg')
-@r_ahomaid.avatar.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\r_ahomaid.png'), filename: 'r_ahomaid.png', content_type: 'image/png')
+@r_minhaj.avatar.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\r_aminhaj.jpg'), filename: 'r_aminhaj.jpg', content_type: 'image/jpg')
+@r_srizzo.avatar.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\r_srizzo.png'), filename: 'r_srizzo.png', content_type: 'image/png')
+@r_amusleh.avatar.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\r_amusleh.jpg'), filename: 'r_amusleh.jpg', content_type: 'image/jpg')
+@r_ahomaid.avatar.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\r_ahomaid.png'), filename: 'r_ahomaid.png', content_type: 'image/png')
 
 # === Projects ===
 
