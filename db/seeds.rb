@@ -45,8 +45,8 @@
 
 # Project attachments
 
-@pj_qarsumo.image.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
-@pj_qsm.image.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
+@pj_qarsumo.image.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
+@pj_qsm.image.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
 
 # === Publications ===
 
@@ -63,5 +63,5 @@
                                                                paper, we propose a new method, Sat2Graph, which combines the advantages of the two prior categories into a unified framework.",
                          url: "https://qsm.qcri.org")
 
-@pr_qarsumo.image.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
-@pr_qsm.image.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
+@pr_qarsumo.image.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
+@pr_qsm.image.attach(io: File.open('#{Rails.root}\app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
