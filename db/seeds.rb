@@ -55,3 +55,13 @@
 
 @pj_qarsumo.publications << @pb_qarsumo
 @pj_qsm.publications << @pb_qsm
+
+# === Products ===
+@pr_qarsumo = Product.create(project: @pj_qarsumo, title: "QarSUMO", description: "QarSUMO is a parallel, congestion-optimized version of the popular SUMO open-source traffic simulator. QarSUMO performs high-level parallelization on top of SUMO, to utilize powerful multi-core servers and enables future extension to multi-node parallel simulation if necessary. The proposed design, while partly sacrificing speedup, makes QarSUMO compatible with future SUMO improvements",
+                             url: "http://qarsumo.qcri.org")
+@pr_qsm = Product.create(project: @pj_qsm, title: "Sat2Graph", description: "Inferring road graphs from satellite imagery is a challenging computer vision task. Prior solutions fall into two categories: (1) pixel-wise segmentation-based approaches, which predict whether each pixel is on a road, and (2) graph-based approaches, which predict the road graph iteratively. We find that these two approaches have complementary strengths while suffering from their own inherent limitations. In this
+                                                               paper, we propose a new method, Sat2Graph, which combines the advantages of the two prior categories into a unified framework."
+                         url: "https://qsm.qcri.org")
+
+@pr_qarsumo.image.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
+@pr_qsm.image.attach(io: File.open('E:\QCRI-Project\QCRI\app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
