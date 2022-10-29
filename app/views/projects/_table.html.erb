@@ -1,0 +1,37 @@
+<div id="toolbar">
+  <%= render :partial => "partials/add_new_object", locals: {model_name: 'project'} %>
+</div>
+<table class="striped highlight"
+       data-toggle="table"
+       data-search="true"
+       data-paginate="true"
+       data-toolbar="#toolbar">
+  <thead>
+    <th>Name</th>
+    <th data-align="center">Team Leader</th>
+    <th data-align="center">Start Date</th>
+    <th data-align="center">End Date</th>
+    <th data-align="center">Status</th>
+    <th data-align="center">Options</th>
+  </thead>
+  <% for project in @projects %>
+    <tr>
+      <td><%= link_to project.name, project_path(project) %></td>
+      <td data-align="center"><%= project.leader_name %></td>
+      <td data-align="center"><%= project.start_date %></td>
+      <td data-align="center"><%= project.end_date.nil? ? "TBA" : project.end_date %></td>
+      <td data-align="center"><%= project.status %></td>
+
+      <td data-align="center">
+        <% if logged_in? && ((current_user.researcher.is_leader && (!project.team_leader_id.nil? && (project.team_leader_id == current_user.researcher.id))) || current_user.admin?) %>
+          <%= link_to edit_project_path(project) do %>
+            <i class="material-icons">tune</i>
+          <% end %>
+        <% end %>
+      </td>
+
+    </tr>
+  <% end %>
+</table>
+<br />
+<p>&nbsp;</p>

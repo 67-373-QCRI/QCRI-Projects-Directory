@@ -3,7 +3,12 @@ class ResearchersController < ApplicationController
 
   # GET /researchers or /researchers.json
   def index
-    @researchers = Researcher.all
+    @researchers = Researcher.all.page(params[:page])
+    @partial = whitelisted_partial || 'table'
+  end
+
+  def whitelisted_partial
+    %w(cards).detect { |str| str == params[:view] }
   end
 
   # GET /researchers/1 or /researchers/1.json
@@ -22,6 +27,9 @@ class ResearchersController < ApplicationController
   # POST /researchers or /researchers.json
   def create
     @researcher = Researcher.new(researcher_params)
+    @user = current_user
+
+    @researcher.user_id = @user.id
 
     respond_to do |format|
       if @researcher.save
@@ -65,6 +73,6 @@ class ResearchersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def researcher_params
-      params.fetch(:researcher, {})
+      params.require(:researcher).permit(:first_name, :last_name, :bio, :group, :job_title, :phone_number, :office_location, :github_url, :website_url, :avatar)
     end
 end

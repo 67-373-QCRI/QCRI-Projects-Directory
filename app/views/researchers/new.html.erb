@@ -1,9 +1,45 @@
-<h1>New researcher</h1>
+<% if logged_in? %>
+  <% if current_user.admin? %>
+    <h4> New Researcher </h4>
+  <% else %>
+    <h4> Create your Researcher Page </h4>
+  <% end %>
 
-<%= render "form", researcher: @researcher %>
 
-<br>
+  <%= simple_form_for @researcher do |f| %>
+    <% if @researcher.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h2>Please resolve the following <%= "error".pluralize(@researcher.errors.count) %>:</h2>
 
-<div>
-  <%= link_to "Back to researchers", researchers_path %>
-</div>
+        <ul>
+          <% @researcher.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+        <div class="col">
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :bio, input_html: {rows: 5} %>
+          <%= f.input :group %>
+          <%= f.input :job_title, label: "Job Title" %>
+          <%= f.input :phone_number, label: "Phone Number" %>
+          <%= f.input :office_location, label: "Office Location" %>
+          <%= f.input :github_url, label: "Github" %>
+          <%= f.input :website_url, label: "Personal Website" %>
+          <%= f.label :avatar, label: "Upload an image for your page:" %>
+          <%= f.input :avatar, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+        </div>
+        <div class="d-grid gap-2" style="padding-bottom:5rem">
+          <%= f.button :submit, class: "btn btn-outline-success" %>
+          <%= link_to "Cancel", :back, {:class=>"btn btn-outline-danger"} %>
+        </div>
+      <% end %>
+    </div>
+<% else %>
+  <div class="alert alert-warning" role="alert">
+    You must be logged in to perform this action
+  </div>
+<% end %>

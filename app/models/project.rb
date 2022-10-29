@@ -3,11 +3,14 @@ class Project < ApplicationRecord
   include AppHelpers::Activeable::InstanceMethods
   extend AppHelpers::Activeable::ClassMethods
 
-  # Callbacks
-  before_create :ensure_leader_is_member
-  after_create :store_member_ids
+  attr_accessor :skip_save_callback
 
-  after_save :unassign_members
+  # Callbacks
+  before_create :ensure_leader_is_member, :assign_leader_to_project
+  after_save :store_member_ids, :unassign_members, unless: :skip_save_callback
+
+
+  before_save :set_default_image
 
   # Relationships
   has_many :publications
@@ -35,7 +38,7 @@ class Project < ApplicationRecord
 
   # Methods
   def team_leader
-    self.researchers.find(self.team_leader_id)
+    Researcher.find(self.team_leader_id)
   end
 
   def leader_name
@@ -53,6 +56,10 @@ class Project < ApplicationRecord
     self.researchers
   end
 
+  def member_names
+    self.members.map { |member| Researcher.find(member).full_name}
+  end
+
   # Private Methods
   private
 
@@ -65,7 +72,9 @@ class Project < ApplicationRecord
   end
 
   def team_leader_exists
-    Researcher.exists?(self.team_leader_id)
+    if (self.team_leader_id.nil?) || (self.team_leader_id_changed?)
+      Researcher.exists?(self.team_leader_id)
+    end
   end
 
   def team_leader_available
@@ -73,9 +82,21 @@ class Project < ApplicationRecord
   end
 
   def ensure_leader_is_member
-    unless self.researcher_ids.include?(self.team_leader_id)
-      self.researchers << Researcher.find(self.team_leader_id)
+    if self.end_date.nil?
+      unless self.researcher_ids.include?(self.team_leader_id)
+        self.researchers << Researcher.find(self.team_leader_id)
+      end
+    else
+      unless self.members.include?(self.team_leader_id)
+        self.members << self.team_leader_id
+      end
     end
+  end
+
+  def assign_leader_to_project
+    r = Researcher.find(self.team_leader_id)
+    r.update_attribute(:project_id, self.id)
+    r.save!
   end
 
   def unassign_members
@@ -87,10 +108,16 @@ class Project < ApplicationRecord
     end
   end
 
-  def store_member_ids
-    self.update_attribute(:members, self.researcher_ids)
-    self.save!
+  def set_default_image
+    unless self.image.attached?
+      self.image.attach(io: File.open(Rails.root.join("app", "assets", "images", "defaults", "default-project.png")), filename: 'default-project.png' , content_type: "image/png")
+    end
   end
+
+  def store_member_ids
+    self.update_column(:members, self.researcher_ids)
+  end
+
 
 
 

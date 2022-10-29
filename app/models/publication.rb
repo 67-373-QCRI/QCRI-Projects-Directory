@@ -16,5 +16,18 @@ class Publication < ApplicationRecord
   scope :by_published, -> { where(published: true) }
   scope :chronological, -> { order('published_on DESC') }
 
+  def authors_citation
+    name_array = self.project.member_names.map { |name| name.gsub(/[\w-]+\s*/){|s| ($'.empty? ? s : "#{s[0]}. ").capitalize} }
+    name_array.join(", ")
+  end
+
+  def pages
+    self.page_from.to_s + "-" + self.page_to.to_s
+  end
+
+  def doi_to_url
+    "https://doi.org/" + self.doi
+  end
+
 
 end

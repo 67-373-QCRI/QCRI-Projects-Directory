@@ -1,12 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <h2>Log In</h2>
 
-  <% if flash[:notice] %>
-    <div class="alert alert-success" role="alert"> <%= flash[:notice] %> </div>
-  <% elsif flash[:alert] %>
-    <div class="alert alert-danger" role="alert"> <%= flash[:alert] %> </div>
-  <% end %>
-
   <%= form_with(scope: :session, url: login_path) do |f| %>
     <div class="form-group">
       <%= f.label :username %><br/>

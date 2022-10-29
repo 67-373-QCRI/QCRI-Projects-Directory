@@ -1,0 +1,23 @@
+
+<% if Project.all.count > 0 %>
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+    <% for project in @projects %>
+      <div class="col-sm-6">
+        <div class="card">
+          <img src="<%= rails_blob_path(project.image, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= project.name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= project.leader_name %></h6>
+            <p class="card-text-gradient overflow-hidden"><%= project.description %></p>
+            <a href="<%= project_path(project.id) %>" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+<center>
+  <h1> There are no projects in the system </h1>
+  <%= render :partial => "partials/add_new_object", locals: {model_name: 'project'} %>
+</center>
+<% end %>

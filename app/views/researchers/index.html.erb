@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Researchers</h1>
-
-<div id="researchers">
-  <% @researchers.each do |researcher| %>
-    <%= render researcher %>
-    <p>
-      <%= link_to "Show this researcher", researcher %>
-    </p>
-  <% end %>
+<div class="container text-left" style="padding-bottom:3rem;padding-top:2rem">
+  <div class="row">
+    <div class="col">
+      <h4>Researchers at QCRI</h4>
+    </div>
+    <div class="col">
+      <div class="btn-group" role="group">
+        <a href="<%= researchers_path(view: 'table') %>" class="<%= indicate_list_type('table') %>" aria-current="page">Table View</a>
+        <a href="<%= researchers_path(view: 'cards') %>" class="<%= indicate_list_type('cards') %>">Card View</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New researcher", new_researcher_path %>
+<%= render partial: @partial %>

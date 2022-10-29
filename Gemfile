@@ -29,6 +29,8 @@ gem "simple_form"
 
 gem "cocoon"
 
+gem "material_icons"
+
 # A modern responsive front-end framework based on Material Design. [https://github.com/mkhairi/materialize-sass]
 # gem 'materialize-sass', '~> 1.0.0'
 

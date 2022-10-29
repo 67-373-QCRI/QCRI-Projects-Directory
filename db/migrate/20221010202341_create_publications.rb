@@ -6,6 +6,11 @@ class CreatePublications < ActiveRecord::Migration[7.0]
       t.text "authors", array: true, default: []
       t.date "published_on"
       t.boolean "published", default: false
+      t.string "journal"
+      t.integer "issue"
+      t.integer "page_from"
+      t.integer "page_to"
+      t.string "conference"
       t.string "doi"
       t.timestamps
     end
