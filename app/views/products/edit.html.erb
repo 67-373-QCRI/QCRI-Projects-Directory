@@ -1,10 +1,36 @@
-<h1>Editing product</h1>
+<% if logged_in? && current_user.admin? %>
+  <h2> Edit <%= @product.title %> <h2>
 
-<%= render "form", product: @product %>
 
-<br>
+  <%= simple_form_for @product do |f| %>
+    <% if @product.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h2>Please resolve the following <%= "error".pluralize(@product.errors.count) %>:</h2>
 
-<div>
-  <%= link_to "Show this product", @product %> |
-  <%= link_to "Back to products", products_path %>
-</div>
+        <ul>
+          <% @product.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+        <div class="col">
+          <%= f.input :title %>
+          <%= f.input :description, input_html: {rows: 5} %>
+          <%= f.association :project %>
+          <%= f.input :url, label: "Demo URL" %>
+          <%= f.label :image, label: "Upload image:" %>
+          <%= f.input :image, label: false, style: 'display: block', input_html: { direct_upload: true } %>
+        </div>
+        <div class="d-grid gap-2" style="padding-bottom:5rem">
+          <%= f.button :submit, class: "btn btn-outline-success" %>
+          <%= link_to "Cancel", :back, {:class=>"btn btn-outline-danger"} %>
+        </div>
+      <% end %>
+    </div>
+<% else %>
+  <div class="alert alert-warning" role="alert">
+    You must be logged in to perform this action
+  </div>
+<% end %>

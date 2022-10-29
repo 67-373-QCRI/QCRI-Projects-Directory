@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require popper
 //= require activestorage
 //= require bootstrap-sprockets
 //= require bootstrap-table/bootstrap-table

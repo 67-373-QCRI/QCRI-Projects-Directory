@@ -1,5 +1,5 @@
 <% if logged_in? && current_user.admin? %>
-  <h3> Edit Project </h3>
+  <h3> Edit <%= @project.name %> </h3>
 
 
     <%= simple_form_for @project do |f| %>

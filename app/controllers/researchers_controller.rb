@@ -1,6 +1,5 @@
 class ResearchersController < ApplicationController
   before_action :set_researcher, only: %i[ show edit update destroy ]
-  before_action :check_login
 
   # GET /researchers or /researchers.json
   def index

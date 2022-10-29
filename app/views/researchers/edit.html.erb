@@ -1,6 +1,6 @@
 <% if logged_in? && (!(current_user.researcher.nil?) && (current_user.researcher.id == @researcher.id)) || current_user.admin? %>
   <% if current_user.admin? %>
-    <h4> Edit Researcher </h4>
+    <h4> Edit <%= @researcher.full_name %> </h4>
   <% else %>
     <h4> Edit your Researcher Page </h4>
   <% end %>
