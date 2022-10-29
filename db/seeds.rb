@@ -14,12 +14,6 @@
 @r_amusleh = Researcher.create(user: @u_amusleh, first_name: "Ahmad", last_name: "Musleh", group: "Software Engineering", job_title: "Software Engineer", office_location: "RC-B1-1267")
 @r_ahomaid = Researcher.create(user: @u_ahomaid, first_name: "Abdulaziz", last_name: "Al-Homaid", group: "Social Computing", job_title: "Research Associate", phone_number: "5586 9646")
 
-# Researcher attachments
-@r_minhaj.avatar.attach(io: File.open('app\assets\images\seed-images\r_aminhaj.jpg'), filename: 'r_aminhaj.jpg', content_type: 'image/jpg')
-@r_srizzo.avatar.attach(io: File.open('app\assets\images\seed-images\r_srizzo.png'), filename: 'r_srizzo.png', content_type: 'image/png')
-@r_amusleh.avatar.attach(io: File.open('app\assets\images\seed-images\r_amusleh.jpg'), filename: 'r_amusleh.jpg', content_type: 'image/jpg')
-@r_ahomaid.avatar.attach(io: File.open('app\assets\images\seed-images\r_ahomaid.png'), filename: 'r_ahomaid.png', content_type: 'image/png')
-
 # === Projects ===
 
 @pj_qarsumo = Project.create(name: "QarSUMO",
@@ -43,11 +37,6 @@
 @pj_qsm.researchers << @r_srizzo
 @pj_qsm.researchers << @r_ahomaid
 
-# Project attachments
-
-@pj_qarsumo.image.attach(io: File.open('app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
-@pj_qsm.image.attach(io: File.open('app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
-
 # === Publications ===
 
 @pb_qarsumo = Publication.create(title: "QarSUMO: A Parallel, Congestion-optimized Traffic Simulator", published: true, published_on: Date.new(2020, 11, 13), conference: "Proceedings of the 28th International Conference on Advances in Geographic Information Systems", page_from: 578, page_to: 588, doi: "10.1145/3397536.3422274")
@@ -62,6 +51,3 @@
 @pr_qsm = Product.create(project: @pj_qsm, title: "Sat2Graph", description: "Inferring road graphs from satellite imagery is a challenging computer vision task. Prior solutions fall into two categories: (1) pixel-wise segmentation-based approaches, which predict whether each pixel is on a road, and (2) graph-based approaches, which predict the road graph iteratively. We find that these two approaches have complementary strengths while suffering from their own inherent limitations. In this
                                                                paper, we propose a new method, Sat2Graph, which combines the advantages of the two prior categories into a unified framework.",
                          url: "https://qsm.qcri.org")
-
-@pr_qarsumo.image.attach(io: File.open('app\assets\images\seed-images\pj_qarsumo.png'), filename: 'pj_qarsumo.png', content_type: 'image/png')
-@pr_qsm.image.attach(io: File.open('app\assets\images\seed-images\pj_qsm.png'), filename: 'pj_qsm.png', content_type: 'image/png')
