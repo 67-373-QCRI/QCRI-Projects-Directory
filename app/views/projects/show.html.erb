@@ -67,26 +67,20 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<!-- RECENT FILES -->
+			<!-- Publications -->
       <% if @project.publications.count > 0 %>
-  			<div class="widget">
-  				<div class="widget-header clearfix">
-  					<h3><i class="fa fa-document"></i> <span>Publications</span></h3>
-  					<div class="btn-group widget-header-toolbar">
-  						<a href="#" title="Expand/Collapse" class="btn btn-link btn-toggle-expand"><i class="fa fa-ios-arrow-up"></i></a>
-  						<a href="#" title="Remove" class="btn btn-link btn-remove"><i class="fa fa-ios-close-empty"></i></a>
-  					</div>
-  				</div>
-  				<div class="widget-content">
-  					<ul class="fa-ul recent-file-list bottom-30px">
-              <% @project.publications.each do |publication| %>
-                <li><%= link_to publication.title, rails_blob_path(publication.document, disposition: 'attachment') %></li>
-              <% end %>
-  					</ul>
-  				</div>
-  			</div>
+        <% @project.publications.each do |publication| %>
+          <div class="card" style="width: 36rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= publication.title %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= publication.authors_citation %></h6>
+              <h6 class="card-subtitle mb-2 text-muted"><%= publication.conference %>, <%= publication.pages %></h6>
+              <a href="<%= publication.doi_to_url %>" class="btn btn-outline-primary">Go to</a>
+            </div>
+          </div>
+        <% end %>
       <% end %>
-			<!-- END RECENT FILES -->
+			<!-- END Publications -->
 		</div>
 	</div>
 </div>

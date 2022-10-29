@@ -11,6 +11,7 @@ class CreateResearchers < ActiveRecord::Migration[7.0]
       t.string "office_location"
       t.string "github_url"
       t.string "website_url"
+      t.string "google_scholar_url"
       t.text "bio"
       t.boolean "is_leader", default: false
       t.timestamps

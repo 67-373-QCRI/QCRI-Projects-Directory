@@ -56,6 +56,10 @@ class Project < ApplicationRecord
     self.researchers
   end
 
+  def member_names
+    self.members.map { |member| Researcher.find(member).full_name}
+  end
+
   # Private Methods
   private
 
@@ -78,8 +82,14 @@ class Project < ApplicationRecord
   end
 
   def ensure_leader_is_member
-    unless self.researcher_ids.include?(self.team_leader_id)
-      self.researchers << Researcher.find(self.team_leader_id)
+    if self.end_date.nil?
+      unless self.researcher_ids.include?(self.team_leader_id)
+        self.researchers << Researcher.find(self.team_leader_id)
+      end
+    else
+      unless self.members.include?(self.team_leader_id)
+        self.members << self.team_leader_id
+      end
     end
   end
 
