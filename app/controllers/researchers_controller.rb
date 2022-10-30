@@ -3,6 +3,9 @@ class ResearchersController < ApplicationController
 
   # GET /researchers or /researchers.json
   def index
+    unless params[:view] != nil
+      params[:view] = 'table'
+    end
     @researchers = Researcher.all.page(params[:page])
     @partial = whitelisted_partial || 'table'
   end
