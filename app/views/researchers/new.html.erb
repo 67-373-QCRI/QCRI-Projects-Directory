@@ -1,4 +1,4 @@
-<% if logged_in? && ((current_user.researcher_id == @researcher.id) || current_user.admin?) %>
+<% if logged_in? && ((current_user.researcher.id == @researcher.id) || current_user.admin?) %>
   <% if current_user.admin? %>
     <h4> New Researcher </h4>
   <% elsif current_user.researcher_id == @researcher.id %>
@@ -27,7 +27,12 @@
           <%= f.input :job_title, label: "Job Title" %>
           <%= f.input :phone_number, label: "Phone Number" %>
           <%= f.input :office_location, label: "Office Location" %>
-          <%= f.input :github_url, label: "Github" %>
+          <%= f.input :github_url, label: "Github Username" do %>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="researcher_github_url">https://github.com/</span>
+              <input type="text" class="form-control" id="researcher_github_url" aria-describedby="basic-addon3" name="researcher[github_url]">
+            </div>
+          <% end %>
           <%= f.input :website_url, label: "Personal Website" %>
           <%= f.label :avatar, label: "Upload an image for your page:" %>
           <%= f.input :avatar, label: false, style: 'display: block', input_html: { direct_upload: true } %>

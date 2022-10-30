@@ -5,26 +5,21 @@
        data-toggle="table"
        data-search="true"
        data-paginate="true"
+       data-sortable="true"
        data-toolbar="#toolbar">
   <thead>
-    <th>Name</th>
-    <th data-align="center">Title</th>
-    <th data-align="center">Leader</th>
-    <th data-align="center">Group</th>
-    <th data-align="center">Current Project</th>
-    <th data-align="center">Options</th>
+    <th data-sortable="true">Name</th>
+    <th data-align="center" data-sortable="true">Title</th>
+    <th data-align="center" data-sortable="true">Group</th>
+    <th data-align="center" data-sortable="true">Current Project</th>
+    <% if logged_in? %>
+      <th data-align="center">Options</th>
+    <% end %>
   </thead>
   <% for researcher in @researchers %>
     <tr>
       <td><%= link_to researcher.full_name, researcher_path(researcher) %></td>
       <td data-align="center"><%= researcher.job_title %></td>
-      <td data-align="center">
-        <% if researcher.is_leader %>
-          <i class="material-icons" style="color:green">check_circle</i>
-        <% else %>
-          <i class="material-icons" style="color:red">cancel</i>
-        <% end %>
-      </td>
       <td data-align="center"><%= researcher.group %></td>
       <td data-align="center">
         <% if researcher.project_id.nil? %>
@@ -34,13 +29,17 @@
         <% end %>
       </td>
 
-      <td data-align="center">
-        <% if logged_in? && ((!current_user.researcher.nil? && (current_user.researcher.id == researcher.id)) || current_user.admin?) %>
-          <%= link_to edit_researcher_path(researcher) do %>
-            <i class="material-icons">tune</i>
+      <% if logged_in? %>
+        <td data-align="center">
+          <% if logged_in? && ((!current_user.researcher.nil? && (current_user.researcher.id == researcher.id)) || current_user.admin?) %>
+            <%= link_to edit_researcher_path(researcher) do %>
+              <i class="material-icons" style="color:#3d98ff">tune</i>
+            <% end %>
+          <% elsif logged_in? %>
+            <i class="material-icons" style="color:#a0a5ad">tune</i>
           <% end %>
-        <% end %>
-      </td>
+        </td>
+      <% end %>
 
     </tr>
   <% end %>

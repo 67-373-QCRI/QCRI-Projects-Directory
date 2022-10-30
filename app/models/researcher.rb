@@ -9,6 +9,13 @@ class Researcher < ApplicationRecord
 
   before_destroy :remove_researcher_from_projects
 
+  # Validations
+  validates :first_name, presence: true, format: { with: /\A^[A-Za-z]+$\z/, message: "First name can only contain letters from A-Z" }
+  validates :last_name, presence: true, format: { with: /\A^[A-Za-z]+$\z/, message: "Last name can only contain letters from A-Z" }
+
+  validates :website_url, format: { with: /\A^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)$\z/, message: "Website URL invalid" }, allow_blank: true
+  validates :google_scholar_url, format: { with: /\A^(https:\/\/scholar.google.com\/citations\?user=|scholar.google.com\/citations\?user=)[\w\d\-]+\z/, message: "Google Scholar URL invalid" }, allow_blank: true
+
   # Scopes
   scope :team_leaders, -> { where(is_leader: true) }
   scope :unassigned, -> { where(project_id: nil) }
@@ -17,6 +24,10 @@ class Researcher < ApplicationRecord
 
   def full_name
     first_name.capitalize + ' ' + last_name.capitalize
+  end
+
+  def github
+    "https://www.github.com/" + self.github_url.strip
   end
 
   def past_projects
