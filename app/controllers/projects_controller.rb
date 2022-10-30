@@ -3,6 +3,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
+    unless params[:view] != nil
+      params[:view] = 'table'
+    end
     @projects = Project.all.page(params[:page])
     @partial = whitelisted_partial || 'table'
   end

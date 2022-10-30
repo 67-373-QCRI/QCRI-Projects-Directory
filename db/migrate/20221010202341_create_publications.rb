@@ -8,6 +8,7 @@ class CreatePublications < ActiveRecord::Migration[7.0]
       t.boolean "published", default: false
       t.string "journal"
       t.integer "issue"
+      t.integer "volume"
       t.integer "page_from"
       t.integer "page_to"
       t.string "conference"

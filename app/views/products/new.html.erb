@@ -1,5 +1,5 @@
 <% if logged_in? && current_user.admin? %>
-  <h2> New Product <h2>
+  <h3> New Product </h3>
 
 
   <%= simple_form_for @product do |f| %>
@@ -31,6 +31,6 @@
     </div>
 <% else %>
   <div class="alert alert-warning" role="alert">
-    You must be logged in to perform this action
+    You must be logged in as admin to perform this action
   </div>
 <% end %>
