@@ -1,9 +1,53 @@
-<h1>New publication</h1>
+<% if logged_in? && current_user.admin? %>
 
-<%= render "form", publication: @publication %>
+  <h1>New Publication for <%= @publication.project.name %></h1>
 
-<br>
+  <%= simple_form_for @publication do |f| %>
+    <% if @publication.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h2>Please resolve the following <%= "error".pluralize(@publication.errors.count) %>:</h2>
 
-<div>
-  <%= link_to "Back to publications", publications_path %>
-</div>
+        <ul>
+          <% @publication.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.hidden_field :project_id, value: @publication.project_id %>
+    <%= f.input :title %>
+    <!-- Removed authors field -->
+    <%= f.input :published_on %>
+    <%= f.input :published %>
+    <%= f.input :journal %>
+    <%= f.input :issue %>
+    <%= f.input :volume %>
+    <div class="form-floating">
+      <div class="row">
+        <div class="col">
+          <%= f.input :page_from, label: false, id: "floatingFrom" %>
+          <label for="floatingFrom">From</label>
+        </div>
+        <div class="col">
+          <h6> - </h6>
+        </div>
+        <div class="col">
+          <%= f.input :page_to, label: false, id: "floatingFrom" %>
+          <label for="floatingFrom">To</label>
+        </div>
+      </div>
+    </div>
+    <%= f.input :doi %>
+
+    <div class="d-grid gap-2" style="padding-bottom:5rem">
+      <%= button_tag "Submit and Return", class: "btn btn-outline-success", name: "commit", value: "submit" %>
+      <%= button_tag "Submit and Add Another", class: "btn btn-outline-info", name: "commit", value: "add_more" %>
+      <%= link_to "Cancel", :back, {:class=>"btn btn-outline-danger"} %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="alert alert-warning" role="alert">
+    You must be logged as an admin to perform this action
+  </div>
+<% end %>

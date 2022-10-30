@@ -1,7 +1,7 @@
-<% if logged_in? %>
+<% if logged_in? && ((current_user.researcher_id == @researcher.id) || current_user.admin?) %>
   <% if current_user.admin? %>
     <h4> New Researcher </h4>
-  <% else %>
+  <% elsif current_user.researcher_id == @researcher.id %>
     <h4> Create your Researcher Page </h4>
   <% end %>
 
@@ -40,6 +40,6 @@
     </div>
 <% else %>
   <div class="alert alert-warning" role="alert">
-    You must be logged in to perform this action
+    You must be logged as an admin to perform this action
   </div>
 <% end %>

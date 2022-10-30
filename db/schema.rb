@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
     t.string "name"
     t.text "description"
     t.integer "members", default: [], array: true
-    t.date "start_date", default: "2022-10-29"
+    t.date "start_date", default: "2022-10-30"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_23_225808) do
     t.boolean "published", default: false
     t.string "journal"
     t.integer "issue"
+    t.integer "volume"
     t.integer "page_from"
     t.integer "page_to"
     t.string "conference"

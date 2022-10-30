@@ -26,7 +26,9 @@ class Publication < ApplicationRecord
   end
 
   def doi_to_url
-    "https://doi.org/" + self.doi
+    unless self.doi.nil?
+      "https://doi.org/" + self.doi
+    end
   end
 
 

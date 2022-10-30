@@ -12,7 +12,7 @@ class PublicationsController < ApplicationController
 
   # GET /publications/new
   def new
-    @publication = Publication.new
+    @publication = Publication.new(project_id: params[:project_id])
   end
 
   # GET /publications/1/edit
@@ -24,7 +24,11 @@ class PublicationsController < ApplicationController
     @publication = Publication.new(publication_params)
 
       if @publication.save
-         redirect_to publications_url, notice: "The document #{@publication.title} has been uploaded."
+        if params[:commit] = "submit"
+          redirect_to @publication.project, notice: "The publication \"#{@publication.title}\" has been added successfully."
+        elsif params[:commit] = "add_more"
+          redirect_to new_publication_path(project_id: @publication.project), notice: "The publication \"#{@publication.title}\" has been added successfully."
+        end
       else
          render "new"
       end
@@ -61,6 +65,6 @@ class PublicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def publication_params
-      params.require(:publication).permit(:title, :document, authors: [])
+      params.require(:publication).permit(:project_id, :title, :document, authors: [])
     end
 end
