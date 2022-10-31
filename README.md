@@ -27,9 +27,10 @@ In your terminal, navigate to the desired installation path, then run:
     bundle install
     rake db:create
     rake db:migrate
-    rails server -e development
     ```
     If you wish to seed the database, you can run `rake db:seed`. The seed file can be found in **db/seed.rb**.
+
+- To start the server in the development environment, run `rails server -e development` and navigate to **localhost:3000** to view the application. You can change the default port in **config/puma.rb**
     
 - If any changes are made to existing migrations, you must run the `rake db:migrate:reset` command. Note that this will also seed the database automatically. Alternatively, you can run the following commands to avoid seeding the database:
     ```
