@@ -21,20 +21,18 @@
     <%= f.input :published_on %>
     <%= f.input :published %>
     <%= f.input :journal %>
+    <%= f.input :conference %>
     <%= f.input :issue %>
     <%= f.input :volume %>
     <div class="form-floating">
       <div class="row">
         <div class="col">
-          <%= f.input :page_from, label: false, id: "floatingFrom" %>
           <label for="floatingFrom">From</label>
+          <%= f.input :page_from, label: false, id: "floatingFrom" %>
         </div>
         <div class="col">
-          <h6> - </h6>
-        </div>
-        <div class="col">
-          <%= f.input :page_to, label: false, id: "floatingFrom" %>
           <label for="floatingFrom">To</label>
+          <%= f.input :page_to, label: false, id: "floatingFrom" %>
         </div>
       </div>
     </div>

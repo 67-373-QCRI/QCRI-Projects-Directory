@@ -65,6 +65,6 @@ class PublicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def publication_params
-      params.require(:publication).permit(:project_id, :title, :document, authors: [])
+      params.require(:publication).permit(:project_id, :title, :conference, :journal, :issue, :volume, :page_from, :page_to, :published, :published_on, :doi)
     end
 end

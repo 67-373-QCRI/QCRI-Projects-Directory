@@ -3,7 +3,15 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
+    unless params[:view] != nil
+      params[:view] = 'table'
+    end
     @products = Product.all.page(params[:page])
+    @partial = whitelisted_partial || 'table'
+  end
+
+  def whitelisted_partial
+    %w(cards).detect { |str| str == params[:view] }
   end
 
   # GET /products/1 or /products/1.json

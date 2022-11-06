@@ -1,0 +1,21 @@
+<% if Product.all.count > 0 %>
+  <div class="row row-cols-1 row-cols-md-5 g-4" style="padding-top:1rem">
+    <% for product in @products %>
+      <div class="col-sm-6">
+        <div class="card">
+          <img src="<%= rails_blob_path(product.image, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.title %></h5>
+            <p class="card-text-gradient overflow-hidden"><%= product.description %></p>
+            <a href="<%= product_path(product.id) %>" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% else %>
+  <center>
+    <h1> There are no products in the system </h1>
+    <%= render :partial => "partials/add_new_object", locals: {model_name: 'product'} %>
+  </center>
+  <% end %>
