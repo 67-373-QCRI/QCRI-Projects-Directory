@@ -85,7 +85,22 @@
             <div class="card-body">
               <h5 class="card-title"><%= publication.title %></h5>
               <h6 class="card-subtitle mb-2 text-muted"><%= publication.authors_citation %></h6>
-              <h6 class="card-subtitle mb-2 text-muted"><%= publication.conference %>, <%= publication.pages %></h6>
+              <h6 class="card-subtitle mb-2 text-muted">
+              <% unless publication.conference.nil? || publication.conference.blank? %>
+                <%= publication.conference %>,
+              <% end %>
+              <% unless publication.journal.nil? || publication.journal.blank? %>
+                <%= publication.journal %>,
+              <% end %>
+              <% unless publication.volume.nil? %>
+                <i><%= publication.volume %></i>
+              <% end %>
+              <% unless publication.issue.nil? %>
+                (<%= publication.issue %>),
+              <% end %>
+              <% unless publication.pages.nil? || publication.pages.blank? %>
+                <%= publication.pages %></h6>
+              <% end %>
               <a href="<%= publication.doi_to_url %>" class="btn btn-outline-primary">Go to</a>
             </div>
           </div>

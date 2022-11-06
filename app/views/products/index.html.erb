@@ -1,27 +1,15 @@
-<h4>Products at QCRI</h4>
-
-<br>
-
-<% if Product.all.count > 0 %>
-  <%= render :partial => "partials/add_new_object", locals: {model_name: 'product'} %>
-  <div class="row row-cols-1 row-cols-md-5 g-4" style="padding-top:1rem">
-    <% for product in @products %>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="<%= rails_blob_path(product.image, disposition: "attachment", only_path: true) %>" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><%= product.title %></h5>
-            <p class="card-text-gradient overflow-hidden"><%= product.description %></p>
-            <a href="<%= product_path(product.id) %>" class="btn btn-primary">Read More</a>
-          </div>
-        </div>
+<div class="container text-left" style="padding-bottom:3rem;padding-top:2rem">
+  <div class="row">
+    <div class="col">
+      <h4>Products at QCRI</h4>
+    </div>
+    <div class="col">
+      <div class="btn-group" role="group">
+        <a href="<%= products_path(view: 'table') %>" class="<%= indicate_list_type('table') %>" aria-current="page">Table View</a>
+        <a href="<%= products_path(view: 'cards') %>" class="<%= indicate_list_type('cards') %>">Card View</a>
       </div>
-    <% end %>
+    </div>
   </div>
+</div>
 
-<% else %>
-  <center>
-    <h1> There are no products in the system </h1>
-    <%= render :partial => "partials/add_new_object", locals: {model_name: 'product'} %>
-  </center>
-<% end %>
+<%= render partial: @partial %>

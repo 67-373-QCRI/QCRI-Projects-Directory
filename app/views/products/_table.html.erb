@@ -1,0 +1,39 @@
+<div id="toolbar">
+  <%= render :partial => "partials/add_new_object", locals: {model_name: 'product'} %>
+</div>
+<table class="striped highlight"
+       data-toggle="table"
+       data-search="true"
+       data-paginate="true"
+       data-toolbar="#toolbar"
+       data-sortable="true">
+  <thead>
+    <th data-sortable="true">Name</th>
+    <th data-align="center" data-sortable="true">Related Project</th>
+    <th data-align="center" data-sortable="true">Demo</th>
+    <% if logged_in? %>
+      <th data-align="center">Options</th>
+    <% end %>
+  </thead>
+  <% for product in @products %>
+    <tr>
+      <td><%= link_to product.title, product_path(product) %></td>
+      <td data-align="center"><%= link_to product.project.name, project_path(product.project) %></td>
+      <td data-align="center"><%= link_to "DEMO", product.url  %></td>
+      <% if logged_in? %>
+        <td data-align="center">
+          <% if logged_in? && ((current_user.researcher.is_leader && (!product.project.team_leader_id.nil? && (product.project.team_leader_id == current_user.researcher.id))) || current_user.admin?) %>
+            <%= link_to edit_product_path(product) do %>
+              <i class="material-icons" style="color:#3d98ff">tune</i>
+            <% end %>
+          <% elsif logged_in? %>
+            <i class="material-icons" style="color:#a0a5ad">tune</i>
+          <% end %>
+        </td>
+      <% end %>
+
+    </tr>
+  <% end %>
+</table>
+<br />
+<p>&nbsp;</p>
